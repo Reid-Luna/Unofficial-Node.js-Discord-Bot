@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "discord.js": "^11.3.2",
+    "dotenv": "^5.0.1",
+    "enmap": "^2.5.2",
+    "enmap-level": "^2.1.0",
+    "moment": "^2.22.1",
+    "moment-duration-format": "^2.2.2",
+    "promisify": "0.0.3"
+  }
+}
