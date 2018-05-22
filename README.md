@@ -1,4 +1,5 @@
 # Unofficial Node.js Discord Bot
+[![Build Status](https://travis-ci.org/mcaustin1/Unofficial-Node.js-Discord-Bot.svg?branch=master)](https://travis-ci.org/mcaustin1/Unofficial-Node.js-Discord-Bot)
 
 
 <img src="https://i.imgur.com/QpIzAFm.png"
@@ -12,4 +13,8 @@ This bot has three main features;
 2. User tracking, mini-games, and votes
 3. Customizable for each server it joins
 
--- More Information Coming Soon --
+** More Information Coming Soon **
+
+---
+
+ If you are going to do a pull request please submit it to the next week branch. This week's branch should be called `twitch#1`
