@@ -1,4 +1,6 @@
 # Unofficial Node.js Discord Bot
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmcaustin1%2FUnofficial-Node.js-Discord-Bot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmcaustin1%2FUnofficial-Node.js-Discord-Bot?ref=badge_shield)
+
 
 
 <img src="https://i.imgur.com/QpIzAFm.png"
@@ -13,3 +15,7 @@ This bot has three main features;
 3. Customizable for each server it joins
 
 -- More Information Coming Soon --
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmcaustin1%2FUnofficial-Node.js-Discord-Bot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmcaustin1%2FUnofficial-Node.js-Discord-Bot?ref=badge_large)
