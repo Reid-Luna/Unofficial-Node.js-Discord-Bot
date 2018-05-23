@@ -46,7 +46,7 @@ exports.run = (client, message, args, level) => {
               m.delete(5000);
             });
           })
-        .catch(e => client.logger.log(e, "error"));
+        .catch((e) => client.logger.log(e, "error"));
       };
       message.channel.fetchMessages()
       // m is an array of messages from the specific user
