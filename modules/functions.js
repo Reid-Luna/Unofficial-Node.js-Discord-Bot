@@ -7,9 +7,6 @@ module.exports = (client) => {
       return;
     }
     const settings = client.settings.get(message.guild.id);
-    if (message.content.startsWith(settings.prefix)) {
-      return;
-    }
     const score = client.points.get(message.author.id) || {
       points: 0,
       level: 0
