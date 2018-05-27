@@ -1,5 +1,29 @@
 module.exports = (client) => {
 
+
+
+  client.pointsMonitor = (client, message) => {
+    if (message.channel.type !== "text") {
+      return;
+    }
+    const settings = client.settings.get(message.guild.id);
+    if (message.content.startsWith(settings.prefix)) {
+      return;
+    }
+    const score = client.points.get(message.author.id) || {
+      points: 0,
+      level: 0
+    };
+    score.points++;
+    const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
+    if (score.level < curLevel) {
+      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+      score.level = curLevel;
+    }
+    client.points.set(message.author.id, score);
+  };
+
+
   /*
   PERMISSION LEVEL FUNCTION
 
@@ -60,7 +84,11 @@ module.exports = (client) => {
     const filter = m => m.author.id === msg.author.id;
     await msg.channel.send(question);
     try {
-      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] });
+      const collected = await msg.channel.awaitMessages(filter, {
+        max: 1,
+        time: limit,
+        errors: ["time"]
+      });
       return collected.first().content;
     } catch (e) {
       return false;
@@ -80,7 +108,9 @@ module.exports = (client) => {
     if (text && text.constructor.name == "Promise")
       text = await text;
     if (typeof evaled !== "string")
-      text = require("util").inspect(text, {depth: 1});
+      text = require("util").inspect(text, {
+        depth: 1
+      });
 
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
@@ -133,7 +163,9 @@ module.exports = (client) => {
   // <String>.toPropercase() returns a proper-cased string such as:
   // "Mary had a little lamb".toProperCase() returns "Mary Had A Little Lamb"
   String.prototype.toProperCase = function() {
-    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
   };
 
   // <Array>.random() returns a single random element from an array

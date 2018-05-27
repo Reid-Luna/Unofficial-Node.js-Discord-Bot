@@ -24,6 +24,9 @@ client.settings = new Enmap({
   })
 });
 
+const pointProvider = new EnmapLevel({name: "points"});
+client.points = new Enmap({provider: pointProvider});
+
 const init = async () => {
 
   //Each of our command files

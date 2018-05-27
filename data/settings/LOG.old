@@ -1,3 +1,9 @@
-2018/05/20-17:57:47.182 1b9c Recovering log #23
-2018/05/20-17:57:47.299 1b9c Delete type=0 #23
-2018/05/20-17:57:47.300 1b9c Delete type=3 #22
+2018/05/27-15:25:24.733 2964 Recovering log #350
+2018/05/27-15:25:24.733 2964 Level-0 table #352: started
+2018/05/27-15:25:24.899 2964 Level-0 table #352: 206 bytes OK
+2018/05/27-15:25:25.051 2964 Delete type=0 #350
+2018/05/27-15:25:25.051 2964 Delete type=3 #348
+2018/05/27-15:25:25.076 37ec Compacting 4@0 + 1@1 files
+2018/05/27-15:25:25.171 37ec Generated table #354@0: 1 keys, 206 bytes
+2018/05/27-15:25:25.171 37ec Compacted 4@0 + 1@1 files => 206 bytes
+2018/05/27-15:25:25.207 37ec compacted to: files[ 0 1 0 0 0 0 0 ]
