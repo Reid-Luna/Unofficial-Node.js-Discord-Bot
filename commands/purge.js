@@ -6,7 +6,6 @@ or the messages from a certain user.
 exports.run = (client, message, args, level) => {
   // determines if it should delete a number of messages or not
   let argType = (isNaN(Number(args))) ? "string" : "num";
-  client.logger.log(argType);
 
   // if it is a num, we will continue to remove the amount of messages
   if (argType === "num") {
@@ -35,22 +34,20 @@ exports.run = (client, message, args, level) => {
     if (user == null) {
       message.channel.send(`User ${args[0]} does not exist`);
     } else {
-      let removeMessages = (arr) => {
-        // remove array of messages
-        message.channel.bulkDelete(arr)
-          .then((res) => {
-            client.logger.log(`Removed ${arr.size} messages from ${args[0]}`);
-            message.channel.send(`Removed ${arr.size} messages from ${args[0]}. Deleting in 3 seconds`)
-              .then((m) => {
-                m.delete(5000);
-              });
-          })
-          .catch((e) => client.logger.log(e, "error"));
-      };
-      message.channel.fetchMessages()
-        // m is an array of messages from the specific user
-        .then((m) => removeMessages(m))
-        .catch((e) => client.logger.log(e, "error"));
+
+      message.channel.fetchMessages().then(messages => {
+
+        const userMessages = messages.filter(msg => msg.author.id == user.id);
+        message.channel.bulkDelete(userMessages);
+        messagesDeleted = userMessages.array().length;
+
+        // Logging the number of messages deleted on both the channel and console.
+        message.channel.send(`Deleted all messages in this channel sent by ${args[0]}. Total messages deleted was ${messagesDeleted}`)
+        client.logger.log(`Deleted all messages in ${message.channel.name} channel sent by ${args[0]}. Total messages deleted was ${messagesDeleted}`)
+      }).catch(err => {
+        client.logger.log(err, "error")
+      })
+
     }
   }
 };
