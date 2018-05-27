@@ -35,18 +35,18 @@ exports.run = (client, message, args, level) => {
       message.channel.send(`User ${args[0]} does not exist`);
     } else {
 
-      message.channel.fetchMessages().then(messages => {
+      message.channel.fetchMessages().then((messages) => {
 
-        const userMessages = messages.filter(msg => msg.author.id == user.id);
+        const userMessages = messages.filter((msg) => msg.author.id === user.id);
         message.channel.bulkDelete(userMessages);
         messagesDeleted = userMessages.array().length;
 
         // Logging the number of messages deleted on both the channel and console.
-        message.channel.send(`Deleted all messages in this channel sent by ${args[0]}. Total messages deleted was ${messagesDeleted}`)
-        client.logger.log(`Deleted all messages in ${message.channel.name} channel sent by ${args[0]}. Total messages deleted was ${messagesDeleted}`)
-      }).catch(err => {
-        client.logger.log(err, "error")
-      })
+        message.channel.send(`Deleted all messages in this channel sent by ${args[0]}. Total messages deleted was ${messagesDeleted}`);
+        client.logger.log(`Deleted all messages in ${message.channel.name} channel sent by ${args[0]}. Total messages deleted was ${messagesDeleted}`);
+      }).catch((err) => {
+        client.logger.log(err, "error");
+      });
 
     }
   }

@@ -1,6 +1,6 @@
 exports.run = async (client, message) => {
   const scoreLevel = client.points.get(message.author.id).level;
-  !scoreLevel ? message.channel.send('You have no levels yet.') : message.channel.send(`You are currently level ${scoreLevel}!`);
+  !scoreLevel ? message.channel.send("You have no levels yet.") : message.channel.send(`You are currently level ${scoreLevel}!`);
 };
 
 exports.conf = {
@@ -11,9 +11,9 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'level',
-  description: 'Figure out what level you are!',
-  usage: 'level',
-  category: 'Levels',
-  extended: ''
-}
+  name: "level",
+  description: "Figure out what level you are!",
+  usage: "level",
+  category: "Levels",
+  extended: ""
+};
