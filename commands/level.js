@@ -4,16 +4,15 @@ exports.run = async (client, message) => {
 };
 
 exports.conf = {
-  hidden: false,
+  enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: 0
+  permLevel: "User"
 };
 
 exports.help = {
   name: "level",
-  description: "Figure out what level you are!",
-  usage: "level",
-  category: "Levels",
-  extended: ""
+  category: "Level",
+  description: "Get your current level",
+  usage: "level"
 };

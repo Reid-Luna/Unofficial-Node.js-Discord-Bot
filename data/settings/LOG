@@ -1,5 +1,14 @@
-2018/05/27-15:52:22.933 4438 Recovering log #357
-2018/05/27-15:52:22.933 4438 Level-0 table #359: started
-2018/05/27-15:52:23.232 4438 Level-0 table #359: 206 bytes OK
-2018/05/27-15:52:23.599 4438 Delete type=0 #357
-2018/05/27-15:52:23.600 4438 Delete type=3 #355
+2018/05/27-18:04:07.996 2ddc Recovering log #363
+2018/05/27-18:04:07.996 2ddc Level-0 table #365: started
+2018/05/27-18:04:08.091 2ddc Level-0 table #365: 206 bytes OK
+2018/05/27-18:04:08.329 2ddc Delete type=0 #363
+2018/05/27-18:04:08.331 2ddc Delete type=3 #361
+2018/05/27-18:04:08.337 3bc4 Compacting 4@0 + 1@1 files
+2018/05/27-18:04:08.401 3bc4 Generated table #367@0: 1 keys, 206 bytes
+2018/05/27-18:04:08.401 3bc4 Compacted 4@0 + 1@1 files => 206 bytes
+2018/05/27-18:04:08.458 3bc4 compacted to: files[ 0 1 0 0 0 0 0 ]
+2018/05/27-18:04:08.458 3bc4 Delete type=2 #354
+2018/05/27-18:04:08.460 3bc4 Delete type=2 #356
+2018/05/27-18:04:08.462 3bc4 Delete type=2 #359
+2018/05/27-18:04:08.464 3bc4 Delete type=2 #362
+2018/05/27-18:04:08.465 3bc4 Delete type=2 #365

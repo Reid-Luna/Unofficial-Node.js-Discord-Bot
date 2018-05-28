@@ -12,9 +12,9 @@ module.exports = (client) => {
       level: 0
     };
     score.points++;
-    const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
+    const curLevel = Math.floor(0.2 * Math.sqrt(score.points));
     if (score.level < curLevel) {
-      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+      message.reply(`You've leveled up to level **${curLevel}**! Congrats!`);
       score.level = curLevel;
     }
     client.points.set(message.author.id, score);
