@@ -182,7 +182,7 @@ exports.conf = {
 exports.help = {
   name: "leaderboard",
   description: "view the leaderboard of points",
-  usage: "leaderboard [username or blank]",
+  usage: "leaderboard [username or pos or blank]",
   category: "Points & Level",
   extended:
     "if the space after leaderboard is left blank, then it will default to the top ten, if it has a user or a position then it will show the specific user"
