@@ -7,7 +7,7 @@ let getUsernames = async (userArray, message) => {
   let returnARR = [];
 
   // a for loop for every item in the user array
-  userArray.forEach(async userId => {
+  userArray.forEach(async (userId) => {
     // gets the user's collection
     let userCollection = await message.guild.fetchMember(userId);
 
@@ -28,7 +28,7 @@ let combine = async (usernames, data) => {
   let returnARR = [];
 
   // a for loop for every user in the usernames (key) array
-  for (i = 0; i < usernames.length; i++) {
+  for (let i = 0; i < usernames.length; i++) {
     // sets the object for the user
     let obj = {
       // username / nickname
@@ -49,7 +49,7 @@ let combine = async (usernames, data) => {
 };
 
 // this function will sort the users by score and set a position
-let sort = unsorted => {
+let sort = (unsorted) => {
   // will sort by points highest to lowest
   // P.S. i know it should be a-b but that didnt work
   let sorted = unsorted.sort((a, b) => {
@@ -57,7 +57,7 @@ let sort = unsorted => {
   });
 
   // for loop for every item in the sorted array to set the position
-  for (i = 0; i < sorted.length; i++) {
+  for (let i = 0; i < sorted.length; i++) {
     sorted[i].pos = i + 1;
   }
 
@@ -86,7 +86,7 @@ let makeTable = async (sorted, setLimit, args, message) => {
       let nickname = user.displayName;
 
       // loop through the sorted array of users to get a specific user
-      for (i = 0; i < sorted.length; i++) {
+      for (let i = 0; i < sorted.length; i++) {
         // using deconstruction to set the user's variables
         let { pos, username, points, level } = sorted[i];
 
@@ -94,10 +94,10 @@ let makeTable = async (sorted, setLimit, args, message) => {
         // then set the obj to that specific user and output the table array
         if (username === nickname) {
           let obj = {
-            pos: pos,
-            username: username,
-            points: points,
-            level: level
+            pos,
+            username,
+            points,
+            level
           };
           tableArr.push(obj);
         }
@@ -111,10 +111,10 @@ let makeTable = async (sorted, setLimit, args, message) => {
         let { pos, username, points, level } = sorted[i];
         if (pos === parseInt(args)) {
           let obj = {
-            pos: pos,
-            username: username,
-            points: points,
-            level: level
+            pos,
+            username,
+            points,
+            level
           };
           tableArr.push(obj);
         }
@@ -127,13 +127,13 @@ let makeTable = async (sorted, setLimit, args, message) => {
 
     // look at me using deconstruction again, but this time we are pushing all
     // users to the table
-    for (i = 0; i < limit; i++) {
+    for (let i = 0; i < limit; i++) {
       let { pos, username, points, level } = sorted[i];
       let obj = {
-        pos: pos,
-        username: username,
-        points: points,
-        level: level
+        pos,
+        username,
+        points,
+        level
       };
       tableArr.push(obj);
     }
