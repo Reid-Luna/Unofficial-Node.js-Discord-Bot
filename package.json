@@ -17,8 +17,6 @@
     "enmap": "^2.5.2",
     "enmap-level": "^2.1.0",
     "moment": "^2.22.1",
-    "moment-duration-format": "^2.2.2",
-    "promisify": "0.0.3",
-    "text-table": "^0.2.0"
+    "moment-duration-format": "^2.2.2"
   }
 }
