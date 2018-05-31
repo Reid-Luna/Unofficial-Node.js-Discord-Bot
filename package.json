@@ -16,6 +16,8 @@
     "dotenv": "^5.0.1",
     "enmap": "^2.5.2",
     "enmap-level": "^2.1.0",
-    "moment": "^2.22.1"
+    "moment": "^2.22.1",
+    "moment-duration-format": "^2.2.2",
+    "promisify": "0.0.3"
   }
 }
