@@ -1,4 +1,7 @@
-module.exports = client => {
+module.exports = (client) => {
+
+
+
   client.pointsMonitor = (client, message) => {
     if (message.channel.type !== "text") {
       return;
@@ -17,6 +20,7 @@ module.exports = client => {
     client.points.set(message.author.id, score);
   };
 
+
   /*
   PERMISSION LEVEL FUNCTION
 
@@ -29,9 +33,7 @@ module.exports = client => {
   client.permlevel = message => {
     let permlvl = 0;
 
-    const permOrder = client.config.permLevels
-      .slice(0)
-      .sort((p, c) => (p.level < c.level ? 1 : -1));
+    const permOrder = client.config.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
 
     while (permOrder.length) {
       const currentLevel = permOrder.shift();
@@ -52,7 +54,7 @@ module.exports = client => {
   the default settings are used.
 
   */
-  client.getGuildSettings = guild => {
+  client.getGuildSettings = (guild) => {
     const def = client.config.defaultSettings;
     if (!guild) return def;
     const returns = {};
@@ -90,6 +92,7 @@ module.exports = client => {
     }
   };
 
+
   /*
   MESSAGE CLEAN FUNCTION
 
@@ -99,7 +102,8 @@ module.exports = client => {
   This is mostly only used by the Eval and Exec commands.
   */
   client.clean = async (client, text) => {
-    if (text && text.constructor.name == "Promise") text = await text;
+    if (text && text.constructor.name == "Promise")
+      text = await text;
     if (typeof evaled !== "string")
       text = require("util").inspect(text, {
         depth: 1
@@ -113,7 +117,7 @@ module.exports = client => {
     return text;
   };
 
-  client.loadCommand = commandName => {
+  client.loadCommand = (commandName) => {
     try {
       const props = require(`../commands/${commandName}`);
       client.logger.log(`Loading Command: ${props.help.name}. 👌`);
@@ -130,15 +134,14 @@ module.exports = client => {
     }
   };
 
-  client.unloadCommand = async commandName => {
+  client.unloadCommand = async (commandName) => {
     let command;
     if (client.commands.has(commandName)) {
       command = client.commands.get(commandName);
     } else if (client.aliases.has(commandName)) {
       command = client.commands.get(client.aliases.get(commandName));
     }
-    if (!command)
-      return `The command \`${commandName}\` doesn"t seem to exist, nor is it an alias. Try again!`;
+    if (!command) return `The command \`${commandName}\` doesn"t seem to exist, nor is it an alias. Try again!`;
 
     if (command.shutdown) {
       await command.shutdown(client);
@@ -165,14 +168,14 @@ module.exports = client => {
   // <Array>.random() returns a single random element from an array
   // [1, 2, 3, 4, 5].random() can return 1, 2, 3, 4 or 5.
   Array.prototype.random = function() {
-    return this[Math.floor(Math.random() * this.length)];
+    return this[Math.floor(Math.random() * this.length)]
   };
 
   // `await client.wait(1000);` to "pause" for 1 second.
   client.wait = require("util").promisify(setTimeout);
 
   // These 2 process methods will catch exceptions and give *more details* about the error and stack trace.
-  process.on("uncaughtException", err => {
+  process.on("uncaughtException", (err) => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
     client.logger.error(`Uncaught Exception: ${errorMsg}`);
     // Always best practice to let the code crash on uncaught exceptions.
