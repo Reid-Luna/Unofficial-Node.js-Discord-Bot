@@ -105,7 +105,7 @@ let makeTable = async (sorted, setLimit, args, message) => {
     } else {
       // if the args is just a number, then it will show the user with the position
       // specified. ex: +board 1 will show the first user
-      for (i = 0; i < sorted.length; i++) {
+      for (let i = 0; i < sorted.length; i++) {
         // using deconstruction like before and if the args match the position
         // then push the user to the table array
         let { pos, username, points, level } = sorted[i];
