@@ -107,14 +107,14 @@ let makeTable = async (sorted, setLimit, args, message) => {
       // specified. ex: +board 1 will show the first user
       for (let i = 0; i < sorted.length; i++) {
         // using deconstruction like before and if the args match the position
-        // then push the user to the table array
-        let { pos, username, points, level } = sorted[i];
-        if (pos === parseInt(args)) {
+        // then push the user to the table array   
+        let { Position, Username, Points, Level } = sorted[i];
+        if (Position === parseInt(args)) {
           let obj = {
-            pos,
-            username,
-            points,
-            level
+            Position,
+            Username,
+            Points,
+            Level
           };
           tableArr.push(obj);
         }
@@ -128,12 +128,12 @@ let makeTable = async (sorted, setLimit, args, message) => {
     // look at me using deconstruction again, but this time we are pushing all
     // users to the table
     for (let i = 0; i < limit; i++) {
-      let { pos, username, points, level } = sorted[i];
+      let { Position, Username, Points, Level } = sorted[i];
       let obj = {
-        pos,
-        username,
-        points,
-        level
+        Position,
+        Username,
+        Points,
+        Level
       };
       tableArr.push(obj);
     }
