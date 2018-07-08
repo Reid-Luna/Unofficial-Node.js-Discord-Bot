@@ -6,8 +6,10 @@ const {
   promisify
 } = require("util");
 const readdir = promisify(require("fs").readdir);
-const Enmap = require('enmap')
-const EnmapLevel = require('enmap-level')
+
+const Enmap = require("enmap");
+const Provider = require("enmap-sqlite");
+const EnmapLevel = require('enmap-level');
 
 
 client.config = require('./config.js')
@@ -24,8 +26,7 @@ client.settings = new Enmap({
   })
 });
 
-const pointProvider = new EnmapLevel({name: "points"});
-client.points = new Enmap({provider: pointProvider});
+client.points = new Enmap({ provider: new Provider({ name: "points" }) });
 
 const init = async () => {
 

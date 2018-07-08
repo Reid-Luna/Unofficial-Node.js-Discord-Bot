@@ -1,6 +1,5 @@
 exports.run = async (client, message) => {
-  const scorePoints = client.points.get(message.author.id).points;
-  !scorePoints ? message.channel.send("You have no points yet.") : message.channel.send(`You have ${scorePoints} points!`);
+  return message.channel.send(`You currently have ${client.points.getProp(key, "points")}, and are level ${client.points.getProp(key, "level")}!`);
 };
 
 exports.conf = {
