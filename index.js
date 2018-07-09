@@ -26,7 +26,11 @@ client.settings = new Enmap({
   })
 });
 
-client.points = new Enmap({ provider: new Provider({ name: "points" }) });
+client.points = new Enmap({
+  provider: new Provider({
+    name: "points"
+  })
+});
 
 const init = async () => {
 
@@ -36,6 +40,7 @@ const init = async () => {
     if (!f.endsWith(".js")) return;
     const response = client.loadCommand(f);
     if (response) console.log(response);
+
   });
 
   //Each of our event files
@@ -44,6 +49,10 @@ const init = async () => {
   evtFiles.forEach(file => {
     const eventName = file.split('.')[0]
     const event = require(`./events/${file}`);
+    
+    // For debugging purposes
+    // console.log("Loading Event " + eventName);
+
 
     client.on(eventName, event.bind(null, client));
     delete require.cache[require.resolve(`./events/${file}`)];

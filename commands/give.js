@@ -1,28 +1,35 @@
-exports.run = async (client, message) => {
-    // Limited to guild owner - adjust to your own preference!
-    if (!message.author.id === message.guild.owner) return message.reply("You're not the boss of me, you can't do that!");​
-    const user = message.mentions.users.first() || client.users.get(args[0]);
-    if (!user) return message.reply("You must mention someone or give their ID!");​
-    const pointsToAdd = parseInt(args[1], 10);
-    if (!pointsToAdd) return message.reply("You didn't tell me how many points to give...")​
-    // Get their current points.
-    const userPoints = client.points.getProp(key, "points");
-    userPoints += pointsToAdd;​
-    // And we save it!
-    client.points.setProp(key, "points", userPoints)​
-    return message.channel.send(`${user.tag} has received ${pointstoAdd} points and now stands at ${userPoints} points.`);
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+
+  const key = `${message.guild.id}-${message.author.id}`
+
+  if (!message.author.id === message.guild.owner) return message.reply("You need permission to control me!");
+
+  const user = message.mentions.users.first() || client.users.get(args[0]);
+  if (!user) return message.reply("You have to specify me a user to give points to!");
+
+  const pointsToAdd = parseInt(args[1], 10);
+  if (!pointsToAdd) return message.reply("Please specify how many points to give...");
+
+
+
+  const userPoints = parseInt(client.points.getProp(key, "points"), 10);
+  var u1 = userPoints + pointsToAdd;
+
+  client.points.setProp(key, "points", u1);
+
+  message.channel.send(`${user.tag} has received ${pointsToAdd} points and now has a total of ${u1} points.`);
 };
 
 exports.conf = {
-    enabled: true,
-    guildOnly: true,
-    aliases: [],
-    permLevel: "User"
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
 };
 
 exports.help = {
-    name: "Give",
-    category: "Level",
-    description: "Give points to a user",
-    usage: "give"
+  name: "give",
+  category: "Level",
+  description: "Give users a certain amount of points",
+  usage: "give [user] [points]"
 };
