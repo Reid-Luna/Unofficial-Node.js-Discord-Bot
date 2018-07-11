@@ -51,7 +51,7 @@ const init = async () => {
     const event = require(`./events/${file}`);
     
     // For debugging purposes
-    // console.log("Loading Event " + eventName);
+    console.log("Loading Event " + eventName);
 
 
     client.on(eventName, event.bind(null, client));
