@@ -45,16 +45,13 @@ const init = async () => {
 
   //Each of our event files
   const evtFiles = await readdir("./events/");
-  client.logger.log(`Loading a total of ${evtFiles.length} events;`);
   evtFiles.forEach(file => {
     const eventName = file.split('.')[0]
     const event = require(`./events/${file}`);
-    
-    // For debugging purposes
-    console.log("Loading Event " + eventName);
 
+    const response = client.loadEvent(eventName, event);
+    if(response) client.logger.error(`Error loading event. ${response}`);
 
-    client.on(eventName, event.bind(null, client));
     delete require.cache[require.resolve(`./events/${file}`)];
   });
 
