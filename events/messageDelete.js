@@ -30,29 +30,48 @@ module.exports = async (client, message) => {
     }
 
     // console.log(entry);
-    var attachment = entry.executor.lastMessage.attachments.first();
+    if (entry.executor.lastMessage.attachments.first()) {
+        var attachment = entry.executor.lastMessage.attachments.first()
+        // || attachment.proxyURL + "\n *Attachment URL is currently broken*"
+        console.log(attachment);
 
 
-    console.log(attachment.proxyURL);
+        const embed = new Discord.RichEmbed().setTitle("Message Deleted").setAuthor(client.user.username, client.user.avatarURL).setColor(0xff000a);
+        embed.addField("User", entry.executor.username + "#" + entry.executor.discriminator);
+        embed.addField("Message", attachment.proxyURL + "\n *Attachment URL is currently broken*" || "Error");
+        embed.addField("Location", entry.extra.channel.name);
+
+        var currentdate = new Date();
+        var datetime = currentdate.getDate() + "/" +
+            (currentdate.getMonth() + 1) + "/" +
+            currentdate.getFullYear() + " @ " +
+            currentdate.getHours() + ":" +
+            currentdate.getMinutes() + ":" +
+            currentdate.getSeconds();
+
+        embed.addField("Time", datetime);
 
 
+        logs.send(embed);
+    } else {
+        const embed = new Discord.RichEmbed().setTitle("Message Deleted").setAuthor(client.user.username, client.user.avatarURL).setColor(0xff000a);
+        embed.addField("User", entry.executor.username + "#" + entry.executor.discriminator);
+        embed.addField("Message", entry.executor.lastMessage.content || "Error");
+        embed.addField("Location", entry.extra.channel.name);
 
-    const embed = new Discord.RichEmbed().setTitle("Message Deleted").setAuthor(client.user.username, client.user.avatarURL).setColor(0xff000a);
-    embed.addField("User", entry.executor.username + "#" + entry.executor.discriminator);
-    embed.addField("Message", entry.executor.lastMessage.content || attachment.proxyURL + "\n *Attachment URL is currently broken*" || "Error");
-    embed.addField("Location", entry.extra.channel.name);
+        var currentdate = new Date();
+        var datetime = currentdate.getDate() + "/" +
+            (currentdate.getMonth() + 1) + "/" +
+            currentdate.getFullYear() + " @ " +
+            currentdate.getHours() + ":" +
+            currentdate.getMinutes() + ":" +
+            currentdate.getSeconds();
 
-    var currentdate = new Date();
-    var datetime = currentdate.getDate() + "/" +
-        (currentdate.getMonth() + 1) + "/" +
-        currentdate.getFullYear() + " @ " +
-        currentdate.getHours() + ":" +
-        currentdate.getMinutes() + ":" +
-        currentdate.getSeconds();
-
-    embed.addField("Time", datetime);
+        embed.addField("Time", datetime);
 
 
-    logs.send(embed);
+        logs.send(embed);
+    }
+
 
 };
