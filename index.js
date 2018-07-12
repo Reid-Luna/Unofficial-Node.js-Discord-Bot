@@ -46,6 +46,8 @@ const init = async () => {
   //Each of our event files
   const evtFiles = await readdir("./events/");
   evtFiles.forEach(file => {
+    if (!file.endsWith(".js")) return;
+
     const eventName = file.split('.')[0]
     const event = require(`./events/${file}`);
 

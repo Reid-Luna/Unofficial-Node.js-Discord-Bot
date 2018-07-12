@@ -6,12 +6,6 @@ module.exports = async (client, message) => {
 
     const logs = message.guild.channels.find('name', 'logging');
 
-    if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !logs) {
-        message.guild.createChannel('logging', 'text');
-    }
-    if (!message.guild.me.hasPermission('MANAGE_CHANNELS') && !logs) {
-        console.log('The logs channel does not exist and tried to create the channel but I am lacking permissions')
-    }
 
     const entry = await message.guild.fetchAuditLogs({
         type: 'MESSAGE_DELETE'

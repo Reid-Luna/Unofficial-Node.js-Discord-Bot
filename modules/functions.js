@@ -1,7 +1,10 @@
 module.exports = (client) => {
 
 
-
+  /* 
+  POINTS MONITOR
+  Will be deprecated in next release.
+  */
   client.pointsMonitor = (client, message) => {
     if (message.channel.type !== "text") {
       return;
