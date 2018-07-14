@@ -1,5 +1,4 @@
 # Unofficial Node.js Discord Bot
-[![Build Status](https://travis-ci.org/mcaustin1/Unofficial-Node.js-Discord-Bot.svg?branch=master)](https://travis-ci.org/mcaustin1/Unofficial-Node.js-Discord-Bot)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f4680bdad754903a5a4f13aadb164f7)](https://app.codacy.com/app/mcaustin1/Unofficial-Node.js-Discord-Bot?utm_source=github.com&utm_medium=referral&utm_content=mcaustin1/Unofficial-Node.js-Discord-Bot&utm_campaign=badger)
 
 =======
@@ -20,5 +19,3 @@ This bot has three main features;
 3. Customizable for each server it joins
 
 ** More Information Coming Soon **
-
- If you are going to do a pull request please submit it to the next week branch. This week's branch should be called `twitch#1`

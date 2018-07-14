@@ -1,7 +1,7 @@
 // This event executes when a message is deleted
 const Discord = require('discord.js');
 
-
+// BUG: Doesn't display user or repeats the same user most likely has something to do with the fetchAuditLogs()
 module.exports = async (client, member) => {
     const logs = member.guild.channels.find('name', 'logging');
 

@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 
 // BUG: On link post it updates the post to add the embed and triggers this event
+// BUG: Repeats the same message on the Unofficla Node.js Discord Server
 module.exports = async (client, oldMessage, newMessage) => {
     var old = oldMessage;
     var new_ = newMessage;
