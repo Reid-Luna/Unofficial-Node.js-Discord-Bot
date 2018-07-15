@@ -1,21 +1,27 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
- 
- const filtered = client.points.filterArray(p => p.guild === message.guild.id);
 
- const sorted = filtered.sort((a,b) => a.points < b.points);
+  const filtered = client.points.filterArray(p => p.guild === message.guild.id);
 
- const top10 = sorted.splice(0,10);
+  const sorted = filtered.sort((a, b) => a.points < b.points);
 
- const embed = new Discord.RichEmbed().setTitle("Leaderboard").setAuthor(client.user.username, client.user.avatarURL).setDescription("Our top 10 points leaders!").setColor(0x00Ae86);
+  const top10 = sorted.splice(0, 10);
+  //  console.log(top10);
 
- for(const data of top10){
-   embed.addField(client.users.get(data.user).tag, `${data.points} points (level ${data.level})`);
- }
- 
- return message.channel.send({embed});
-  };
+
+  const embed = new Discord.RichEmbed().setTitle("Leaderboard").setAuthor(client.user.username, client.user.avatarURL).setDescription("Our top 10 points leaders!").setColor(0x00Ae86);
+
+  top10.forEach(data => {
+    embed.addField(client.users.get(data.user).tag, `${data.points} points (level ${data.level})`);
+  });
+
+
+
+  return message.channel.send({
+    embed
+  });
+};
 
 exports.conf = {
   enabled: true,
