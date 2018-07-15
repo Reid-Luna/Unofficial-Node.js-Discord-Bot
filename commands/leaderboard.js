@@ -14,9 +14,13 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
   const embed = new Discord.RichEmbed().setTitle("Leaderboard").setAuthor(client.user.username, client.user.avatarURL).setDescription("Our top 10 points leaders!").setColor(0x00Ae86);
 
-  top10.forEach(data => {
-    embed.addField(client.users.get(data.user).tag, `${data.points} points (level ${data.level})`);
-  });
+
+  for(var i =0; i < top10.length; i++){
+    embed.addField(client.users.get(top10[i].user).tag, `${top10[i].points} points (level ${top10[i].level})`);
+
+  }
+  // top10.forEach(top10[i] => {
+  // });
 
 
 
