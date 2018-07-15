@@ -4,7 +4,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
   const filtered = client.points.filterArray(p => p.guild === message.guild.id);
 
-  const sorted = filtered.sort((a, b) => a.points < b.points);
+  const sorted = filtered.sort((a, b) => a.points - b.points);
   console.log(sorted);
   
 
