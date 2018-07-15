@@ -16,9 +16,9 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
 
   for(var i =0; i < top10.length; i++){
-    console.log(client.users.get(top10[i].user));
+    var tag = client.users.get(top10[i].user).tag || "UNDEFINED"
     
-    embed.addField(client.users.get(top10[i].user).tag, `${top10[i].points} points (level ${top10[i].level})`);
+    embed.addField(tag, `${top10[i].points} points (level ${top10[i].level})`);
 
   }
   // top10.forEach(top10[i] => {
