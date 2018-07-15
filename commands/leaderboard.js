@@ -5,11 +5,11 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   const filtered = client.points.filterArray(p => p.guild === message.guild.id);
 
   const sorted = filtered.sort((a, b) => a.points - b.points);
-  console.log(sorted);
+  // console.log(sorted);
   
 
   const top10 = sorted.splice(0, 10);
-  //  console.log(top10);
+   console.log(top10);
 
 
   const embed = new Discord.RichEmbed().setTitle("Leaderboard").setAuthor(client.user.username, client.user.avatarURL).setDescription("Our top 10 points leaders!").setColor(0x00Ae86);
