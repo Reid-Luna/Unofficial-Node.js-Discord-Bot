@@ -16,12 +16,12 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
 
   for(var i =0; i < top10.length; i++){
-    var tag = client.users.get(top10[i].user).tag || "UNDEFINED"
+    var user = client.users.get(top10[i].user) 
 
-    console.log(tag);
+    // console.log(user);
     
     
-    embed.addField(tag, `${top10[i].points} points (level ${top10[i].level})`);
+    embed.addField(user.tag || "User Left", `${top10[i].points} points (level ${top10[i].level})`);
 
   }
   // top10.forEach(top10[i] => {
