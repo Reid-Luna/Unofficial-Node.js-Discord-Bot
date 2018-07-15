@@ -1,15 +1,15 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
 
-  const key = `${message.guild.id}-${message.author.id}`
 
   if (!message.author.id === message.guild.owner) return message.reply("You need permission to control me!");
 
-  const user = message.mentions.users.first() || client.users.get(args[0]);
+  const user = message.mentions.users.first() || client.users.get(args[0]) || message.author;
   if (!user) return message.reply("You have to specify me a user to give points to!");
 
   const pointsToAdd = parseInt(args[1], 10);
   if (!pointsToAdd) return message.reply("Please specify how many points to give...");
 
+  const key = `${message.guild.id}-${user.id}`
 
 
   const userPoints = parseInt(client.points.getProp(key, "points"), 10);
