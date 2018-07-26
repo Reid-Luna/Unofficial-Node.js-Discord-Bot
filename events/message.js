@@ -4,7 +4,7 @@
 
 module.exports = async (client, message) => {
 
-const settings = message.settings = client.getGuildSettings(message.guild)
+  const settings = message.settings = client.getGuildSettings(message.guild)
 
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
@@ -25,14 +25,25 @@ const settings = message.settings = client.getGuildSettings(message.guild)
     let currentPoints = client.points.getProp(key, "points");
     client.points.setProp(key, "points", ++currentPoints);
 
+    const userPoints = parseInt(client.points.getProp(key, "points"), 10);
     const curLevel = Math.floor(0.1 * Math.sqrt(currentPoints));
 
-    if (client.points.getProp(key, "level") < curLevel) {
-      message.reply(`You have leveled up to level **${curLevel}**! Congratulations!`);
+    const userLevel = parseInt(client.points.getProp(key, "level"), 10);
+
+
+
+
+    client.emit("levelUpdate", message.member, message.guild, message);
+    
+
+
+    if (userLevel !== curLevel) {
+
       client.points.setProp(key, "level", curLevel);
+      message.reply(`You have leveled up to level **${curLevel}**! Congratulations!`);
     }
 
-    return
+    return;
   };
 
   // Here we separate our "command" name, and our "arguments" for the command.

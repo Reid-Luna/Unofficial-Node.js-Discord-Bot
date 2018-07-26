@@ -4,21 +4,29 @@ module.exports = (client, member) => {
   // Load the guild's settings
   const settings = client.getGuildSettings(member.guild);
 
+
+  //PM The user the rules
   pmUserRules(member, client);
+
+  //Give the person the intern role on join 
+  //NOTE: Only for the Unofficial Node.js Discord Server
+  member.addRole(member.guild.roles.find(role => role.name === "Intern"));
+
 
 
   // If welcome is off, don't proceed (don't welcome the user)
-  if (settings.welcomeEnabled !== "true") return;
+  if (settings.welcomeEnabled !== "true") {
+    return;
+  } else {
 
-  // Replace the placeholders in the welcome message with actual data
-  const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member);
+    // Replace the placeholders in the welcome message with actual data
+    const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member);
 
 
-
-
-  // Send the welcome message to the welcome channel
-  // There's a place for more configs here.
-  member.guild.channels.find("name", settings.welcomeChannel).send(welcomeMessage).catch(console.error);
+    // Send the welcome message to the welcome channel
+    // There's a place for more configs here.
+    member.guild.channels.find("name", settings.welcomeChannel).send(welcomeMessage).catch(console.error);
+  }
 };
 
 
@@ -38,11 +46,11 @@ function pmUserRules(user, client) {
   1. Don't be dumb. Use common sense.
   2. Be respectful, this one won't get you in trouble for breaking it but if you're disrespecting people on a personal level and everyone is aware, you're probably going to get yelled at.
   3. No NSFW images/videos/texts.
-  4. Please keep all general JavaScript help to #js-help & all Discord.js help to #discord-js-help. All general talk about JavaScript should be in #main.
+  4. Please keep all general JavaScript help to <#356188127058198528> & all Discord.js help to <#356188090039009280>. All general talk about JavaScript should be in #main.
   -----
   If you need a mod to help you with an issue that is NOT regarding programming or Node.js please at me @ℚ.#7750 or sending me a private message if I am not online. To send me a private message, click the three people at the top left,  press the Find and Start a Conversation button, and type my name (@ℚ.#7750) in the area.
   
   *If you have any feedback, want to request a change, or add/remove something please send it in #feedback in a way that is well formatted and documented(We are almost all programmers we hopefully know how to document things well)*`, {
-      code: "asciidoc"
+    code: "asciidoc"
   });
 }

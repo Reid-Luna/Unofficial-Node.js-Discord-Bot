@@ -4,42 +4,42 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   if (!message.author.id === message.guild.owner) return message.reply("You need permission to control me!");
 
   const user = message.mentions.users.first() || client.users.get(args[0]) || message.author;
-  if (!user) return message.reply("You have to specify me a user to give points to!");
+  if (!user) return message.reply("You have to specify a user!");
 
   const pointsToAdd = parseInt(args[1], 10);
-  if (!pointsToAdd) return message.reply("Please specify how many points to give...");
+  if (!pointsToAdd) return message.reply("Please specify how many points to set...");
 
   const key = `${message.guild.id}-${user.id}`
 
 
+  client.points.setProp(key, "points", pointsToAdd);
+
   const userPoints = parseInt(client.points.getProp(key, "points"), 10);
-  var u1 = userPoints + pointsToAdd;
-
-  client.points.setProp(key, "points", u1);
-
   const userLevel = parseInt(client.points.getProp(key, "level"), 10);
+
   const curLevel = Math.floor(0.1 * Math.sqrt(userPoints));
 
 
   if (userLevel !== curLevel) {
+    client.points.setProp(key, "level", curLevel);
     client.emit("levelUpdate", message.member, message.guild, undefined);
 
-    client.points.setProp(key, "level", curLevel);
   }
 
-  message.channel.send(`${user.tag} has received ${pointsToAdd} points and now has a total of ${u1} points with a level of ${curLevel}.`);
+
+  message.channel.send(`${user.tag} has been set to ${pointsToAdd} points. Updated level to ${curLevel}`);
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ["setp", "sp"],
   permLevel: "Moderator"
 };
 
 exports.help = {
-  name: "give",
+  name: "setpoints",
   category: "Level",
-  description: "Give users a certain amount of points",
-  usage: "give [user] [points]"
+  description: "Sets users points",
+  usage: "set [user] [points]"
 };

@@ -23,6 +23,7 @@ module.exports = async (client, channel) => {
 
     embed.addField("Time", datetime);
 
+    // TODO: Add channel name
 
     logs.send(embed);
 
