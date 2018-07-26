@@ -16,7 +16,9 @@ module.exports = (client, member, guild, message) => {
     //TODO: Add automatic role creation
 
 
-
+    //Exempt ranks
+    if (member.roles.find("name", "Geek") || member.roles.find("name", "Mod") || member.roles.find("name", "Admin")) return;
+    
 
     if (level <= 3) {
         //Intern < 900
@@ -48,7 +50,7 @@ module.exports = (client, member, guild, message) => {
         if (message) return message.reply(`You have leveled up to the next rank, **Junior Dev**! Congratulations!`);
 
     } else if (level > 5 && level <= 7) {
-        //Dev, 3600-4900
+        //Dev, 3600-6399
 
         // Check if user already has the role
         if (member.roles.find("name", "Dev")) return;

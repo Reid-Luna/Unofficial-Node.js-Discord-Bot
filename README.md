@@ -18,4 +18,16 @@ This bot has three main features;
 2. User tracking, mini-games, and votes
 3. Customizable for each server it joins
 
-** More Information Coming Soon **
+
+------  
+## Points System
+
+*Note that one points is equal to one message*
+
+Ranks:
+* Intern, **0 and 899 points**
+* Junior Dev, **900 and 3599 points**
+* Dev, **3600 and 6399 points**
+* Senior Dev, **6400+ points**
+
+
