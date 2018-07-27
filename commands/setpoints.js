@@ -17,7 +17,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   const userPoints = parseInt(client.points.getProp(key, "points"), 10);
   const userLevel = parseInt(client.points.getProp(key, "level"), 10);
 
-  const curLevel = Math.floor(0.1 * Math.sqrt(userPoints));
+  const curLevel = Math.floor(0.25 * Math.sqrt(userPoints));
 
 
   if (userLevel !== curLevel) {
