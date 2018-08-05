@@ -21,7 +21,7 @@ exports.run = (client, message, args, level) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ["et"],
+    aliases: ["et", "eventt", "etest"],
     permLevel: "Bot Admin"
 };
 

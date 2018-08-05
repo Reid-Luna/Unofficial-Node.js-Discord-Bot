@@ -14,7 +14,6 @@ function parseChange(message) {
 
 
 module.exports = async (client, channel) => {
-    // console.log(channel);
 
 
     const logs = channel.guild.channels.find('name', 'logging');
@@ -36,24 +35,22 @@ module.exports = async (client, channel) => {
 
     // NOTE: Can add changes if it comes to it. Seems like a waste of space.
 
-    //     var thingsChanged = [];
+   /* 
+   var thingsChanged = [];
 
-    //     entry.changes.forEach(change => {
-    //         change.key = parseChange(change.key);
-    //         thingsChanged.push(change);
-    //     });
+    entry.changes.forEach(change => {
+        change.key = parseChange(change.key);
+        thingsChanged.push(change);
+    });
 
+    */
 
     const embed = new Discord.RichEmbed().setTitle("Channel Created").setAuthor(client.user.username, client.user.avatarURL).setColor(0x1afffd);
     embed.addField("User", entry.executor.username + "#" + entry.executor.discriminator);
     embed.addField("Channel Type", entry.target.type);
     embed.addField("Channel Name", entry.target.name)
 
-    // var n = 0;
-    // thingsChanged.forEach(change => {
-    //     n++;
-    //     embed.addField("Change #" + n, `${change.key} \nOld: ${change.old} \nNew: ${change.new}` || "Error");
-    // });
+   
 
     var currentdate = new Date();
     var datetime = currentdate.getDate() + "/" +
@@ -67,11 +64,4 @@ module.exports = async (client, channel) => {
 
 
     logs.send(embed);
-
-    // console.log(entry);
-
-
-
-
-
 };

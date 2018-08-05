@@ -4,6 +4,9 @@ module.exports = (client, member) => {
   // Load the guild's settings
   const settings = client.getGuildSettings(member.guild);
 
+  // console.log(member.user.username);
+  checkUserName(member.user, member.guild, client);
+
 
   //PM The user the rules
   pmUserRules(member, client);
@@ -26,6 +29,8 @@ module.exports = (client, member) => {
     // Send the welcome message to the welcome channel
     // There's a place for more configs here.
     member.guild.channels.find("name", settings.welcomeChannel).send(welcomeMessage).catch(console.error);
+    // TODO: Ensure the channel is created
+
   }
 };
 
@@ -53,4 +58,25 @@ function pmUserRules(user, client) {
   *If you have any feedback, want to request a change, or add/remove something please send it in #feedback in a way that is well formatted and documented(We are almost all programmers we hopefully know how to document things well)*`, {
     code: "asciidoc"
   });
+}
+
+function checkUserName(user, guild, client) {
+  //(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]
+  var re = new RegExp('(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]');
+  var userName = user.username;
+
+  var reason = "Invite link Username - Autoban";
+
+
+  if (re.test(userName)) {
+    var member = guild.members.get(user.id);
+    if (!member.bannable) {
+      client.logger.log(`I cannot ban ${member.user.tag}! Do they have a higher role? Do I have ban permissions?`);
+    } else {
+      member.ban(reason)
+        .catch(error => client.logger.error(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+
+      client.logger.log(`${member.user.tag} has been banned by the bot because: ${reason}`);
+    }
+  }
 }
