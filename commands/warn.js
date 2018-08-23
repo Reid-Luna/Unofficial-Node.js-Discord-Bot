@@ -1,14 +1,15 @@
 exports.run = async (client, message, args) => {
 
 
-    if(message.mentions.users.size < 1) return message.reply(`You must mention someone when you try to warn them!`);
+    if (message.mentions.users.size < 1) return message.reply(`You must mention someone when you try to warn them!`);
 
     //Get user to warn
     const user = message.mentions.users.first() || client.users.get(args[0]);
-   
+    const member = message.mentions.members.first() || client.members.get(args[0]);
+
     //Get the reason from the message if it exists
     let reason = args.slice(1).join(' ') || 'No reason specified';
-    
+
 
     //User key value
     const key = `${message.guild.id}-${user.id}`
@@ -32,12 +33,12 @@ exports.run = async (client, message, args) => {
         var newWarns = currWarns + 1;
         client.warns.setProp(key, "warn", newWarns);
         message.channel.send(`Warned ${user} - Total warns ${newWarns}`);
-        client.emit("warnEvent", user, newWarns, message.guild);
+        client.emit("warnEvent", member, newWarns, message.guild);
 
     } else {
         client.warns.setProp(key, "warn", 1);
         message.channel.send(`Warned ${user} - Total warns 1`);
-        client.emit("warnEvent", user, newWarns, message.guild);
+        client.emit("warnEvent", member, newWarns, message.guild);
 
     }
 };

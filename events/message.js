@@ -6,6 +6,13 @@ module.exports = async (client, message) => {
 
   const settings = message.settings = client.getGuildSettings(message.guild)
 
+
+
+  if(message.member.roles.find("name", "muted")) {
+    message.delete();
+    return;
+  }
+
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
   if (message.content.indexOf(settings.prefix) !== 0) {
@@ -34,7 +41,7 @@ module.exports = async (client, message) => {
 
 
     client.emit("levelUpdate", message.member, message.guild, message);
-    
+
 
 
     if (userLevel !== curLevel) {

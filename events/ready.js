@@ -11,6 +11,8 @@ module.exports = async client => {
     const logs = guild.channels.find('name', 'logging');
 
 
+    // TODO: Delete all muted roles on ready to prevent permenatly muted members.
+
 
     if (guild.me.hasPermission('MANAGE_CHANNELS') && !logs) {
       guild.createChannel('logging', 'text');
