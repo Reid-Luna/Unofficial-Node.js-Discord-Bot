@@ -32,6 +32,12 @@ client.points = new Enmap({
   })
 });
 
+client.warns = new Enmap({
+  provider: new Provider({
+    name: "warns"
+  })
+});
+
 const init = async () => {
 
   //Each of our command files

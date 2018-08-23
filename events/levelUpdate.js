@@ -1,6 +1,6 @@
 // This event executes when a new member joins a server. Let's welcome them!
 
-module.exports = (client, member, guild, message) => {
+module.exports = async (client, member, guild, message) => {
 
 
     const key = `${guild.id}-${member.id}`;
@@ -16,6 +16,8 @@ module.exports = (client, member, guild, message) => {
     //TODO: Add automatic role creation
     // FUTURE: Add a prestige funciton for staff, but only based off of points that users approve, ie. +approve <User> and it boosts their points. Has to be low points
 
+
+    // BUG: This is not working
     //Exempt ranks
     if (member.roles.find("name", "Geek") || member.roles.find("name", "Mod") || member.roles.find("name", "Admin")) return;
 
@@ -59,7 +61,7 @@ module.exports = (client, member, guild, message) => {
         if (member.roles.find("name", "Intern")) member.removeRole(guild.roles.find(role => role.name === "Intern"));
         if (member.roles.find("name", "Junior Dev")) member.removeRole(guild.roles.find(role => role.name == "Junior Dev"));
 
-        //Add JD role
+        //Add Dev role
         member.addRole(guild.roles.find(role => role.name === "Dev"));
 
         if (message) return message.reply(`You have leveled up to the next rank, **Dev**! Congratulations!`);
