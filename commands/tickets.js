@@ -30,7 +30,7 @@ exports.run = async (client, message, _args, _level) => {
 
     let tags;
 
-    if (m) {tags = m}; // if m is defined, set tags as m
+    if (m) {tags = m;} // if m is defined, set tags as m
 
     // title ex: reid#6340_1, reid#6340_2, etc.
     const title = `${tag}_${closedTickets.length + 1}`;
