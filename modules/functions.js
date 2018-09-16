@@ -1,7 +1,10 @@
 module.exports = (client) => {
 
 
-
+  /* 
+  POINTS MONITOR
+  Will be deprecated in next release.
+  */
   client.pointsMonitor = (client, message) => {
     if (message.channel.type !== "text") {
       return;
@@ -12,7 +15,7 @@ module.exports = (client) => {
       level: 0
     };
     score.points++;
-    const curLevel = Math.floor(0.2 * Math.sqrt(score.points));
+    const curLevel = Math.floor(0.25 * Math.sqrt(score.points));
     if (score.level < curLevel) {
       message.reply(`You've leveled up to level **${curLevel}**! Congrats!`);
       score.level = curLevel;
@@ -120,7 +123,7 @@ module.exports = (client) => {
   client.loadCommand = (commandName) => {
     try {
       const props = require(`../commands/${commandName}`);
-      client.logger.log(`Loading Command: ${props.help.name}. 👌`);
+      client.logger.log(`Loading Command: ${props.help.name}. ✓`);
       if (props.init) {
         props.init(client);
       }
@@ -133,6 +136,7 @@ module.exports = (client) => {
       return `Unable to load command ${commandName}: ${e}`;
     }
   };
+
 
   client.unloadCommand = async (commandName) => {
     let command;
@@ -150,6 +154,19 @@ module.exports = (client) => {
     return false;
   };
 
+
+  client.loadEvent = (eventName, event) => {
+    try {
+      client.on(eventName, event.bind(null, client));
+      client.logger.log(`Loading Event: ${eventName} ✓`)
+    } catch (e) {
+      return `Unable to load event ${eventName}: ${e}`;
+
+    }
+
+
+  }
+
   /* MISCELLANEOUS NON-CRITICAL FUNCTIONS */
 
   // EXTENDING NATIVE TYPES IS BAD PRACTICE. Why? Because if JavaScript adds this
@@ -159,15 +176,15 @@ module.exports = (client) => {
 
   // <String>.toPropercase() returns a proper-cased string such as:
   // "Mary had a little lamb".toProperCase() returns "Mary Had A Little Lamb"
-  String.prototype.toProperCase = function() {
-    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
+  String.prototype.toProperCase = function () {
+    return this.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   };
 
   // <Array>.random() returns a single random element from an array
   // [1, 2, 3, 4, 5].random() can return 1, 2, 3, 4 or 5.
-  Array.prototype.random = function() {
+  Array.prototype.random = function () {
     return this[Math.floor(Math.random() * this.length)]
   };
 

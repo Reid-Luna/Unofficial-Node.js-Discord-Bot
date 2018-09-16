@@ -1,5 +1,4 @@
 # Unofficial Node.js Discord Bot
-[![Build Status](https://travis-ci.org/mcaustin1/Unofficial-Node.js-Discord-Bot.svg?branch=master)](https://travis-ci.org/mcaustin1/Unofficial-Node.js-Discord-Bot)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f4680bdad754903a5a4f13aadb164f7)](https://app.codacy.com/app/mcaustin1/Unofficial-Node.js-Discord-Bot?utm_source=github.com&utm_medium=referral&utm_content=mcaustin1/Unofficial-Node.js-Discord-Bot&utm_campaign=badger)
 
 =======
@@ -19,6 +18,16 @@ This bot has three main features;
 2. User tracking, mini-games, and votes
 3. Customizable for each server it joins
 
-** More Information Coming Soon **
 
- If you are going to do a pull request please submit it to the next week branch. This week's branch should be called `twitch#1`
+------  
+## Points System
+
+*Note that one points is equal to one message*
+
+Ranks:
+* Intern, **0 and 899 points**
+* Junior Dev, **900 and 3599 points**
+* Dev, **3600 and 6399 points**
+* Senior Dev, **6400+ points**
+
+

@@ -6,8 +6,10 @@ const {
   promisify
 } = require("util");
 const readdir = promisify(require("fs").readdir);
-const Enmap = require('enmap')
-const EnmapLevel = require('enmap-level')
+
+const Enmap = require("enmap");
+const Provider = require("enmap-sqlite");
+const EnmapLevel = require('enmap-level');
 
 
 client.config = require('./config.js')
@@ -24,8 +26,17 @@ client.settings = new Enmap({
   })
 });
 
-const pointProvider = new EnmapLevel({name: "points"});
-client.points = new Enmap({provider: pointProvider});
+client.points = new Enmap({
+  provider: new Provider({
+    name: "points"
+  })
+});
+
+client.warns = new Enmap({
+  provider: new Provider({
+    name: "warns"
+  })
+});
 
 const init = async () => {
 
@@ -35,16 +46,20 @@ const init = async () => {
     if (!f.endsWith(".js")) return;
     const response = client.loadCommand(f);
     if (response) console.log(response);
+
   });
 
   //Each of our event files
   const evtFiles = await readdir("./events/");
-  client.logger.log(`Loading a total of ${evtFiles.length} events;`);
   evtFiles.forEach(file => {
+    if (!file.endsWith(".js")) return;
+
     const eventName = file.split('.')[0]
     const event = require(`./events/${file}`);
 
-    client.on(eventName, event.bind(null, client));
+    const response = client.loadEvent(eventName, event);
+    if(response) client.logger.error(`Error loading event. ${response}`);
+
     delete require.cache[require.resolve(`./events/${file}`)];
   });
 

@@ -1,6 +1,9 @@
-const { version } = require("discord.js");
+const {
+  version
+} = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
+const bVersion = require('project-version');
 
 exports.run = (client, message, args, level) => { // eslint-disable-line no-unused-vars
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
@@ -10,8 +13,12 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
 • Users      :: ${client.users.size.toLocaleString()}
 • Servers    :: ${client.guilds.size.toLocaleString()}
 • Channels   :: ${client.channels.size.toLocaleString()}
+• Bot Version :: v${bVersion}
 • Discord.js :: v${version}
-• Node       :: ${process.version}`, {code: "asciidoc"});
+• Node       :: ${process.version}`, {
+    code: "asciidoc"
+  });
+
 };
 
 exports.conf = {
