@@ -4,7 +4,7 @@ exports.run = async (client, message, _args, level) => {
   const channelId = message.channel.id;
   const isMod = level === 2 ? true : false;
   // open tickets category id
-  const categoryId = "490738686028414977";
+  const categoryId = message.settings.closedTicketsId
 
   // user key
   const key = `${guild}-${id}`;
@@ -18,6 +18,7 @@ exports.run = async (client, message, _args, level) => {
   const openTickets = client.tickets.getProp(key, "openTickets");
   const closedTickets = client.tickets.getProp(key, "closedTickets");
 
+  if (!categoryId) {return message.reply("Please set the id of the closed tickets category. To set use `+set edit closedTicketsId <categoryId>`");}
   // only make a new ticket if there are none open
   if (openTickets.length > 0 || isMod) {
     if (openTickets.indexOf(channelId) > -1 || isMod) {

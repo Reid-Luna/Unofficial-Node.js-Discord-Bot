@@ -3,7 +3,7 @@ exports.run = async (client, message, _args, _level) => {
   const { guild } = message;
 
   // open tickets category id
-  const categoryId = guild;
+  const categoryId = message.settings.openTicketsId
 
   // user key
   const key = `${guild}-${id}`;
@@ -22,6 +22,7 @@ exports.run = async (client, message, _args, _level) => {
   const openTickets = client.tickets.getProp(key, "openTickets");
   const closedTickets = client.tickets.getProp(key, "closedTickets");
 
+  if (!categoryId) {return message.reply("Please set the id of the open tickets category. To set use `+set edit openTicketsId <categoryId>`");}
   // only make a new ticket if there are none open
   if (openTickets.length === 0) {
     let m = message.content.split(" ");

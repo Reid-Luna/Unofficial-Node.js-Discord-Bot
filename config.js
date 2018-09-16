@@ -23,7 +23,9 @@ const config = {
     "systemNotice": "true",
     "welcomeChannel": "welcome",
     "welcomeMessage": "Say helo to {{user}}, everyone!",
-    "welcomeEnabled": "false"
+    "welcomeEnabled": "false",
+    "openTicketsId": "undefined",
+    "closedTicketsId": "undefined"
   },
 
   //Permission Level Definitions
