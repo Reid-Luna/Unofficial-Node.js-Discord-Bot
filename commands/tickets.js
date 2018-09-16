@@ -3,7 +3,7 @@ exports.run = async (client, message, _args, _level) => {
   const { guild } = message;
 
   // open tickets category id
-  const categoryId = "490730522612334594";
+  const categoryId = guild;
 
   // user key
   const key = `${guild}-${id}`;
@@ -48,7 +48,7 @@ exports.run = async (client, message, _args, _level) => {
       });
   } else {
     return message.reply(
-      "you already have a ticket open. please resolve that ticket first, then come back."
+      "You already have a ticket open. Please resolve that ticket first, then come back."
     );
   }
 };

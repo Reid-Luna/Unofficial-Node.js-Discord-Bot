@@ -11,7 +11,7 @@ exports.run = async (client, message, _args, level) => {
 
   // check if user is in database
   if (!client.tickets.has(key)) {
-    return message.reply("you do not have any open tickets!");
+    return message.reply("You do not have any open tickets!");
   }
 
   // get amount of open tickets
@@ -31,15 +31,15 @@ exports.run = async (client, message, _args, level) => {
           ...closedTickets,
           channelId
         ]);
-        message.reply(`ticket **${message.channel.name}** was closed.`);
+        message.reply(`Ticket **${message.channel.name}** was closed.`);
       });
     } else {
       return message.reply(
-        "either this channel is not a ticket, or this channel is not your ticket. in both cases you are unable to resolve this ticket."
+        "Either this channel is not a ticket, or this channel is not your ticket. In both cases you are unable to resolve this ticket."
       );
     }
   } else {
-    return message.reply("you do not have any open tickets!");
+    return message.reply("You do not have any open tickets!");
   }
 };
 
