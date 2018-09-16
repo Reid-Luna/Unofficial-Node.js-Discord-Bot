@@ -3,7 +3,7 @@ exports.run = async (client, message, _args, _level) => {
   const { guild } = message;
 
   // open tickets category id
-  const categoryId = message.settings.openTicketsId
+  const categoryId = message.settings.openTicketsId;
 
   // user key
   const key = `${guild}-${id}`;

@@ -4,7 +4,7 @@ exports.run = async (client, message, _args, level) => {
   const channelId = message.channel.id;
   const isMod = level === 2 ? true : false;
   // open tickets category id
-  const categoryId = message.settings.closedTicketsId
+  const categoryId = message.settings.closedTicketsId;
 
   // user key
   const key = `${guild}-${id}`;
