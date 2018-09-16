@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
     const member = message.mentions.members.first() || client.members.get(args[0]);
 
     //Get the reason from the message if it exists
-    let reason = args.slice(1).join(' ') || 'No reason specified';
+    // let reason = args.slice(1).join(' ') || 'No reason specified';
 
 
     //User key value

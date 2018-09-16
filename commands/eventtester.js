@@ -6,7 +6,7 @@ a command, it is not shown to them. If a command name is given with the
 help command, its extended help is shown.
 */
 
-exports.run = (client, message, args, level) => {
+exports.run = (client, message, args, _level) => {
 
 
 

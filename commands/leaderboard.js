@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, _args, _level) => { // eslint-disable-line no-unused-vars
 
   const filtered = client.points.filterArray(p => p.guild === message.guild.id);
 

@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, _args, _level) => { 
     //Filter all people in points that are in this guild
     const filtered = client.points.filter(p => p.guild === message.guild.id);
 

@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, _level) => { // eslint-disable-line no-unused-vars
 
 
   if (!message.author.id === message.guild.owner) return message.reply("You need permission to control me!");
