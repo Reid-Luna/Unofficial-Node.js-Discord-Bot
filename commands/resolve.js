@@ -23,7 +23,7 @@ exports.run = async (client, message, _args, level) => {
     if (openTickets.indexOf(channelId) > -1 || isMod) {
       let index = openTickets.indexOf(channelId);
       openTickets.splice(index, 1);
-      message.channel.setParent(categoryId).then(u => {
+      message.channel.setParent(categoryId).then( (u) => {
         let topic = u.topic;
         u.setTopic(`[CLOSED] ${topic}`);
         client.tickets.setProp(key, "openTickets", openTickets);

@@ -28,19 +28,19 @@ exports.run = async (client, message, _args, _level) => {
     m.splice(0, 1); // remove command [+ticket]
     m = m.join(" "); // join, and split by comma
 
-    let tags = undefined;
+    let tags;
 
-    if (m) tags = m; // if m is defined, set tags as m
+    if (m) {tags = m}; // if m is defined, set tags as m
 
     // title ex: reid#6340_1, reid#6340_2, etc.
     const title = `${tag}_${closedTickets.length + 1}`;
     const type = "text";
     guild
       .createChannel(title, type) // create a text channel with the set title
-      .then(c => {
-        c.setParent(categoryId).then(u => {
+      .then( (c) => {
+        c.setParent(categoryId).then( (u) => {
           // set the parent to the tickets category
-          u.setTopic(tags).then(n => {
+          u.setTopic(tags).then( (n) => {
             // set the topic to the tags
             client.tickets.setProp(key, "openTickets", [...openTickets, n.id]); // add the channel id to the openTickets
           });
