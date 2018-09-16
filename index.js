@@ -1,21 +1,16 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const client = new Discord.Client();
 
-
-const {
-  promisify
-} = require("util");
+const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 
 const Enmap = require("enmap");
 const Provider = require("enmap-sqlite");
-const EnmapLevel = require('enmap-level');
+const EnmapLevel = require("enmap-level");
 
-
-client.config = require('./config.js')
-client.logger = require('./util/Logger')
+client.config = require("./config.js");
+client.logger = require("./util/Logger");
 require("./modules/functions.js")(client);
-
 
 client.commands = new Enmap();
 client.aliases = new Enmap();
@@ -38,15 +33,19 @@ client.warns = new Enmap({
   })
 });
 
-const init = async () => {
+client.tickets = new Enmap({
+  provider: new Provider({
+    name: "tickets"
+  })
+});
 
+const init = async () => {
   //Each of our command files
   const cmdFiles = await readdir("./commands/");
   cmdFiles.forEach(f => {
     if (!f.endsWith(".js")) return;
     const response = client.loadCommand(f);
     if (response) console.log(response);
-
   });
 
   //Each of our event files
@@ -54,11 +53,11 @@ const init = async () => {
   evtFiles.forEach(file => {
     if (!file.endsWith(".js")) return;
 
-    const eventName = file.split('.')[0]
+    const eventName = file.split(".")[0];
     const event = require(`./events/${file}`);
 
     const response = client.loadEvent(eventName, event);
-    if(response) client.logger.error(`Error loading event. ${response}`);
+    if (response) client.logger.error(`Error loading event. ${response}`);
 
     delete require.cache[require.resolve(`./events/${file}`)];
   });
@@ -71,7 +70,6 @@ const init = async () => {
   }
 
   client.login(client.config.token);
-
-}
+};
 
 init();
