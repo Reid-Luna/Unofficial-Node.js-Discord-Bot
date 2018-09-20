@@ -1,6 +1,13 @@
+// TODO: Please set channel to read only
+
+
 exports.run = async (client, message, _args, level) => {
-  const { id } = message.author;
-  const { guild } = message;
+  const {
+    id
+  } = message.author;
+  const {
+    guild
+  } = message;
   const channelId = message.channel.id;
   const isMod = level === 2 ? true : false;
   // open tickets category id
@@ -18,13 +25,15 @@ exports.run = async (client, message, _args, level) => {
   const openTickets = client.tickets.getProp(key, "openTickets");
   const closedTickets = client.tickets.getProp(key, "closedTickets");
 
-  if (!categoryId) {return message.reply("Please set the id of the closed tickets category. To set use `+set edit closedTicketsId <categoryId>`");}
+  if (!categoryId) {
+    return message.reply("Please set the id of the closed tickets category. To set use `+set edit closedTicketsId <categoryId>`");
+  }
   // only make a new ticket if there are none open
   if (openTickets.length > 0 || isMod) {
     if (openTickets.indexOf(channelId) > -1 || isMod) {
       let index = openTickets.indexOf(channelId);
       openTickets.splice(index, 1);
-      message.channel.setParent(categoryId).then( (u) => {
+      message.channel.setParent(categoryId).then((u) => {
         let topic = u.topic;
         u.setTopic(`[CLOSED] ${topic}`);
         client.tickets.setProp(key, "openTickets", openTickets);
