@@ -1,8 +1,7 @@
 # Unofficial Node.js Discord Bot
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f4680bdad754903a5a4f13aadb164f7)](https://app.codacy.com/app/mcaustin1/Unofficial-Node.js-Discord-Bot?utm_source=github.com&utm_medium=referral&utm_content=mcaustin1/Unofficial-Node.js-Discord-Bot&utm_campaign=badger)
 
-=======
-
+------  
 
 
 
@@ -31,3 +30,4 @@ Ranks:
 * Senior Dev, **6400+ points**
 
 
+Please see [TODO](https://github.com/UnofficialNodejsDiscord/Unofficial-Node.js-Discord-Bot/blob/master/TODO.md) if you want to help out with this bot!
