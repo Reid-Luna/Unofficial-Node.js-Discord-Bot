@@ -8,36 +8,31 @@ module.exports = (client, member) => {
   checkUserName(member.user, member.guild, client);
 
 
-  //PM The user the rules
+  // PM The user the rules
   pmUserRules(member, client);
 
-  //Give the person the intern role on join 
-  //NOTE: Only for the Unofficial Node.js Discord Server
-  member.addRole(member.guild.roles.find(role => role.name === "Intern"));
-
+  // Give the person the intern role on join
+  // NOTE: Only for the Unofficial Node.js Discord Server
+  member.addRole(member.guild.roles.find((role) => role.name === 'Intern'));
 
 
   // If welcome is off, don't proceed (don't welcome the user)
-  if (settings.welcomeEnabled !== "true") {
+  if (settings.welcomeEnabled !== 'true') {
     return;
   } else {
-
     // Replace the placeholders in the welcome message with actual data
-    const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member);
+    const welcomeMessage = settings.welcomeMessage.replace('{{user}}', member);
 
 
     // Send the welcome message to the welcome channel
     // There's a place for more configs here.
-    member.guild.channels.find("name", settings.welcomeChannel).send(welcomeMessage).catch(console.error);
+    member.guild.channels.find('name', settings.welcomeChannel).send(welcomeMessage).catch(console.error);
     // TODO: Ensure the channel is created
-
   }
 };
 
 
-
 function pmUserRules(user, client) {
-
   client.logger.log(`[JOIN] A user just joined and has been messaged the rules.`);
 
 
@@ -56,25 +51,26 @@ function pmUserRules(user, client) {
   If you need a mod to help you with an issue that is NOT regarding programming or Node.js please at me @ℚ.#7750 or sending me a private message if I am not online. To send me a private message, click the three people at the top left,  press the Find and Start a Conversation button, and type my name (@ℚ.#7750) in the area.
   
   *If you have any feedback, want to request a change, or add/remove something please send it in #feedback in a way that is well formatted and documented(We are almost all programmers we hopefully know how to document things well)*`, {
-    code: "asciidoc"
+    code: 'asciidoc',
   });
 }
 
 function checkUserName(user, guild, client) {
-  //(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]
-  var re = new RegExp('(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]');
-  var userName = user.username;
+  // (https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]
+  let re_discord = new RegExp('(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]');
+  let re_link = new RegExp('(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$');
+  let userName = user.username;
 
-  var reason = "Invite link Username - Autoban";
+  let reason = 'Invite link Username - Autoban';
 
 
-  if (re.test(userName)) {
-    var member = guild.members.get(user.id);
+  if (re_discord.test(userName) || re_link.test(userName)) {
+    let member = guild.members.get(user.id);
     if (!member.bannable) {
       client.logger.log(`I cannot ban ${member.user.tag}! Do they have a higher role? Do I have ban permissions?`);
     } else {
       member.ban(reason)
-        .catch(error => client.logger.error(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+        .catch((error) => client.logger.error(`Sorry ${message.author} I couldn't ban because of : ${error}`));
 
       client.logger.log(`${member.user.tag} has been banned by the bot because: ${reason}`);
     }

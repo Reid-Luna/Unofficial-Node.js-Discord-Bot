@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo no testing right now!"
+    "test": "echo no testing right now!",
+    "start": "micro"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +21,8 @@
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
     "project-version": "^1.2.0",
-    "promisify": "0.0.3"
+    "promisify": "0.0.3",
+    "micro": "latest"
   },
   "devDependencies": {
     "eslint": "^5.6.0",
