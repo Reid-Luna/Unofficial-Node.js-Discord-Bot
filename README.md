@@ -1,8 +1,7 @@
 # Unofficial Node.js Discord Bot
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f4680bdad754903a5a4f13aadb164f7)](https://app.codacy.com/app/mcaustin1/Unofficial-Node.js-Discord-Bot?utm_source=github.com&utm_medium=referral&utm_content=mcaustin1/Unofficial-Node.js-Discord-Bot&utm_campaign=badger)
 
-=======
-
+------  
 
 
 
@@ -25,9 +24,10 @@ This bot has three main features;
 *Note that one points is equal to one message*
 
 Ranks:
-* Intern, **0 and 899 points**
-* Junior Dev, **900 and 3599 points**
-* Dev, **3600 and 6399 points**
-* Senior Dev, **6400+ points**
+* Intern, **0 and 225 points**
+* Junior Dev, **226 and 624 points**
+* Dev, **625 and 1224 points**
+* Senior Dev, **1224+ points**
 
 
+Please see [TODO](https://github.com/UnofficialNodejsDiscord/Unofficial-Node.js-Discord-Bot/blob/master/TODO.md) if you want to help out with this bot!
