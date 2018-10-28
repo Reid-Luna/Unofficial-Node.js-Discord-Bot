@@ -1,25 +1,27 @@
-exports.run = async(client, message, args, _level) => {
-
-  if (!message.author.id === message.guild.owner) 
+exports.run = async (client, message, args, _level) => {
+  if (!message.author.id === message.guild.owner) {
     return message.reply('You need permission to control me!');
-  
+  }
+
   const user = message
     .mentions
     .users
     .first() || client
     .users
     .get(args[0]) || message.author;
-  if (!user) 
+  if (!user) {
     return message.reply('You have to specify me a user to give points to!');
-  
+  }
+
   const pointsToAdd = parseInt(args[1], 10);
-  if (!pointsToAdd) 
+  if (!pointsToAdd) {
     return message.reply('Please specify how many points to give...');
-  
-  const key = `${message.guild.id}-${user.id}`
+  }
+
+  const key = `${message.guild.id}-${user.id}`;
 
   const userPoints = parseInt(client.points.getProp(key, 'points'), 10);
-  var u1 = userPoints + pointsToAdd;
+  let u1 = userPoints + pointsToAdd;
 
   client
     .points
@@ -45,12 +47,12 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [],
-  permLevel: 'Moderator'
+  permLevel: 'Moderator',
 };
 
 exports.help = {
   name: 'give',
   category: 'Level',
   description: 'Give users a certain amount of points',
-  usage: 'give [user] [points]'
+  usage: 'give [user] [points]',
 };

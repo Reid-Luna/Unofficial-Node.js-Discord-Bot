@@ -8,7 +8,7 @@ module.exports = {
     'no-console': 'off',
     "max-len": [
       2, {
-        "code": 200,
+        "code": 250,
         "tabWidth": 4,
         "ignoreUrls": true
       }

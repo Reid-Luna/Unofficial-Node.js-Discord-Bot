@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+// const Discord = require('discord.js');
 
 module.exports = async (client, member, numWarns, guild) => {
   switch (numWarns) {

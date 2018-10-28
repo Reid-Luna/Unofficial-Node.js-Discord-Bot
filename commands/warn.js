@@ -48,6 +48,7 @@ exports.run = async (client, message, args) => {
       .send(`Warned ${user} - Total warns ${newWarns}`);
     client.emit('warnEvent', member, newWarns, message.guild);
   } else {
+    let newWarns = 1;
     client
       .warns
       .setProp(key, 'warn', 1);

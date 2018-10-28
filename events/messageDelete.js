@@ -13,12 +13,11 @@ module.exports = async (client, message) => {
     .then((audit) => audit.entries.first());
 
   // BUG: Errors if user is muted
-  let user;
-  if (entry.extra.channel.id === message.channel.id && (entry.target.id === message.author.id) && (entry.createdTimestamp > (Date.now() - 5000)) && (entry.extra.count >= 1)) {
-    user = entry.executor.username;
-  } else {
-    user = message.author.username;
-  }
+  /*
+  let user = (entry.extra.channel.id === message.channel.id && (entry.target.id === message.author.id) && (entry.createdTimestamp > (Date.now() - 5000)) && (entry.extra.count >= 1))
+    ? entry.executor.username
+    : message.author.username;
+  */
 
   // console.log(entry);
   if (entry.executor.lastMessage.attachments.first()) {

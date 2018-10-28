@@ -60,15 +60,15 @@ function pmUserRules(user, client) {
 function checkUserName(user, guild, client) {
   // (https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-
   // z]
-  let re_discord = new RegExp('(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]');
+  let reDiscord = new RegExp('(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]');
   // let re_link = new
-  // RegExp('(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]
-  // {1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$');
+  // RegExp('(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.
+  // ] {1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$');
   let userName = user.username;
 
   let reason = 'Invite link Username - Autoban';
 
-  if (re_discord.test(userName)) {
+  if (reDiscord.test(userName)) {
     // if (re_discord.test(userName) || re_link.test(userName)) {
     let member = guild
       .members
@@ -80,7 +80,7 @@ function checkUserName(user, guild, client) {
     } else {
       member
         .ban(reason)
-        .catch((error) => client.logger.error(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+        .catch((error) => client.logger.error(`Sorry, I couldn't ban because of : ${error}`));
 
       client
         .logger
