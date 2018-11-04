@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => {
   if (!message.author.id === message.guild.owner) {
     return message.reply('You need permission to control me!');
   }
@@ -8,17 +8,21 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     .users
     .first() || client
     .users
-    .get(args[0]) || message.author;
+    .get(args[0]);
+
   if (!user) {
     return message.reply('You have to specify a user!');
   }
 
   const pointsToAdd = parseInt(args[1], 10);
+
+
   if (!pointsToAdd) {
     return message.reply('Please specify how many points to set...');
   }
 
   const key = `${message.guild.id}-${user.id}`;
+  console.log(key);
 
   client
     .points
