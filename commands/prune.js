@@ -34,8 +34,7 @@ exports.run = async (client, message, _args, _level) => {
         console.log(`Prune(10 > Points, Last Message): ${guildMem.user.id}`);
       }
     } else {
-      // No last message and points are less than 10.
-      //   TODO: Check if joined within the past 7 days, if so don't prune
+      // No last message and points are less than 10. Look at timestamp joined
       const joinedTimestamp = guildMem.joinedTimestamp;
       const sevenDays = (8.64 * Math.pow(10, 7));
       const diff = Date.now() - joinedTimestamp;
@@ -67,6 +66,8 @@ exports.run = async (client, message, _args, _level) => {
 
     const reason = `${message.author} issued prune command, you have been pruned!`;
 
+    pmUser(member);
+
     member
       .kick(reason)
       .catch((error) => message.channel.send(`ERROR: Could not kick ${member.user.tag} because of ${error}`));
@@ -93,3 +94,7 @@ exports.help = {
   description: 'Prunes people but prunes people with roles',
   usage: 'prune',
 };
+
+function pmUser(user) {
+  user.send(`Just to let you know you were pruned from the Unoffical Node.js Discord Server. If you would like to join us again feel free to do so at https://www.discord.gg/wZaMDn8. We hope to see you again soon!`);
+}
