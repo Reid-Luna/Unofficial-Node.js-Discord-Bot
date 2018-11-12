@@ -35,6 +35,7 @@ module.exports = (client, member) => {
   }
 };
 
+// TODO: Update this message
 function pmUserRules(user, client) {
   client
     .logger
@@ -54,7 +55,9 @@ function pmUserRules(user, client) {
   -----
   If you need a mod to help you with an issue that is NOT regarding programming or Node.js please at me @ℚ.#7750 or sending me a private message if I am not online. To send me a private message, click the three people at the top left,  press the Find and Start a Conversation button, and type my name (@ℚ.#7750) in the area.
   
-  *If you have any feedback, want to request a change, or add/remove something please send it in #feedback in a way that is well formatted and documented(We are almost all programmers we hopefully know how to document things well)*`, {code: 'asciidoc'});
+  *If you have any feedback, want to request a change, or add/remove something please send it in #feedback in a way that is well formatted and documented(We are almost all programmers we hopefully know how to document things well)*`, {
+    code: 'asciidoc',
+  });
 }
 
 function checkUserName(user, guild, client) {

@@ -10,9 +10,8 @@ module.exports = async (client, member, guild, message) => {
   // TODO: In the future use better removal of previous roles
   // TODO: Add automatic role creation FUTURE: Add a prestige funciton for staff,
   // but only based off of points that users approve, ie. +approve <User> and it
-  // boosts their points. Has to be low points BUG: This is not working Exempt
-  // ranks
-  if (member.roles.find('name', 'Geek') || member.roles.find('name', 'Mod') || member.roles.find('name', 'Admin')) {
+  // boosts their points. Has to be low points
+  if (member.roles.find('name', 'Geeks') || member.roles.find('name', 'Mod') || member.roles.find('name', 'Admin')) {
     return;
   }
 
