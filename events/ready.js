@@ -24,11 +24,15 @@ module.exports = async (client) => {
         client
           .logger
           .error(`The logs channel does not exist and tried to create the channel but I am lacking permissions for the server ${guild.name}.`);
-      }
+              //  TODO: Need a better way to do this
+              process.exit(1);
+        }
       if (!guild.me.hasPermission('VIEW_AUDIT_LOG') && !logs) {
         client
           .logger
-          .error(`The logs channel does not exist and tried to create the channel but I am lacking permissions for the server ${guild.name}.`);
+          .error(`The logs channel does not exist and tried to create the channel but I am lacking permissions for the server ${guild.name}. Shutting down...`);
+        //  TODO: Need a better way to do this
+        process.exit(1);
       }
     });
 
