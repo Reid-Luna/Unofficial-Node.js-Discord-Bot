@@ -7,7 +7,7 @@ module.exports = async (client, member) => {
   const logs = member
     .guild
     .channels
-    .find('name', 'logging');
+    .find((c) => c.name == 'logging');
 
 
   // NOTE: If they leave by themselves this is triggered and gets the most recent kick message

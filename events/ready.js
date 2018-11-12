@@ -10,7 +10,7 @@ module.exports = async (client) => {
     .forEach((guild) => {
       const logs = guild
         .channels
-        .find('name', 'logging');
+        .find((c) => c.name == 'logging');
 
       // TODO: Delete all muted roles on ready to prevent permenatly muted members.
 
@@ -25,10 +25,17 @@ module.exports = async (client) => {
           .logger
           .error(`The logs channel does not exist and tried to create the channel but I am lacking permissions for the server ${guild.name}.`);
       }
+      if (!guild.me.hasPermission('VIEW_AUDIT_LOG') && !logs) {
+        client
+          .logger
+          .error(`The logs channel does not exist and tried to create the channel but I am lacking permissions for the server ${guild.name}.`);
+      }
     });
 
   // Make the bot 'Watch' for a command starting with the default prefix.
   client
     .user
-    .setActivity(`${client.config.defaultSettings.prefix}help`, {type: 'WATCHING'});
+    .setActivity(`${client.config.defaultSettings.prefix}help`, {
+      type: 'WATCHING',
+    });
 };

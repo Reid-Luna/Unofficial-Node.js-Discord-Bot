@@ -11,24 +11,24 @@ module.exports = async (client, member, guild, message) => {
   // TODO: Add automatic role creation FUTURE: Add a prestige funciton for staff,
   // but only based off of points that users approve, ie. +approve <User> and it
   // boosts their points. Has to be low points
-  if (member.roles.find('name', 'Geeks') || member.roles.find('name', 'Mod') || member.roles.find('name', 'Admin')) {
+  if (member.roles.find((role) => role.name === 'Geeks') || member.roles.find((role) => role.name === 'Mod') || member.roles.find((role) => role.name === 'Admin')) {
     return;
   }
 
   if (level <= 3) {
     // Intern < 225 Remove higher role
-    if (member.roles.find('name', 'Junior Dev')) {
+    if (member.roles.find((role) => role.name == 'Junior Dev')) {
       member.removeRole(guild.roles.find((role) => role.name == 'Junior Dev'));
     }
-    if (member.roles.find('name', 'Dev')) {
+    if (member.roles.find((role) => role.name == 'Dev')) {
       member.removeRole(guild.roles.find((role) => role.name == 'Dev'));
     }
-    if (member.roles.find('name', 'Senior Dev')) {
+    if (member.roles.find((role) => role.name == 'Senior Dev')) {
       member.removeRole(guild.roles.find((role) => role.name == 'Senior Dev'));
     }
 
     // Ensure they already have the role
-    if (member.roles.find('name', 'Intern')) {
+    if (member.roles.find((role) => role.name === 'Intern')) {
       return;
     }
 
@@ -36,12 +36,12 @@ module.exports = async (client, member, guild, message) => {
     member.addRole(guild.roles.find((role) => role.name === 'Intern'));
   } else if (level > 3 && level <= 5) {
     // Junior Dev, 225 - 624 Check if user already has the role
-    if (member.roles.find('name', 'Junior Dev')) {
+    if (member.roles.find((role) => role.name === 'Junior Dev')) {
       return;
     }
 
     // Remove previous role
-    if (member.roles.find('name', 'Intern')) {
+    if (member.roles.find((role) => role.name === 'Intern')) {
       member.removeRole(guild.roles.find((role) => role.name === 'Intern'));
     }
 
@@ -53,15 +53,15 @@ module.exports = async (client, member, guild, message) => {
     }
   } else if (level > 5 && level <= 7) {
     // Dev, 625-1224 Check if user already has the role
-    if (member.roles.find('name', 'Dev')) {
+    if (member.roles.find((role) => role.name === 'Dev')) {
       return;
     }
 
     // Remove previous roles
-    if (member.roles.find('name', 'Intern')) {
+    if (member.roles.find((role) => role.name === 'Intern')) {
       member.removeRole(guild.roles.find((role) => role.name === 'Intern'));
     }
-    if (member.roles.find('name', 'Junior Dev')) {
+    if (member.roles.find((role) => role.name === 'Junior Dev')) {
       member.removeRole(guild.roles.find((role) => role.name == 'Junior Dev'));
     }
 
@@ -73,18 +73,18 @@ module.exports = async (client, member, guild, message) => {
     }
   } else if (level > 7 && level <= 9) {
     // Senior Dev, 1224 - 2025 Check if user already has the role
-    if (member.roles.find('name', 'Senior Dev')) {
+    if (member.roles.find((role) => role.name == 'Senior Dev')) {
       return;
     }
 
     // Remove previous roles
-    if (member.roles.find('name', 'Intern')) {
+    if (member.roles.find((role) => role.name === 'Intern')) {
       member.removeRole(guild.roles.find((role) => role.name === 'Intern'));
     }
-    if (member.roles.find('name', 'Junior Dev')) {
+    if (member.roles.find((role) => role.name === 'Junior Dev')) {
       member.removeRole(guild.roles.find((role) => role.name == 'Junior Dev'));
     }
-    if (member.roles.find('name', 'Dev')) {
+    if (member.roles.find((role) => role.name === 'Dev')) {
       member.removeRole(guild.roles.find((role) => role.name === 'Dev'));
     }
 

@@ -10,13 +10,14 @@ module.exports = async (client, oldMessage, newMessage) => {
   const logs = oldMessage
     .guild
     .channels
-    .find('name', 'logging');
+    .find((c) => c.name == 'logging');
 
   const embed = new Discord
     .RichEmbed()
     .setTitle('Message Update')
     .setAuthor(client.user.username, client.user.avatarURL)
     .setColor(0xff268f);
+
   embed.addField('User', old.author.username + '#' + old.author.discriminator);
   embed.addField('Old', old.content);
   embed.addField('New', new_.content);

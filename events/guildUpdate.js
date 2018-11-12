@@ -1,6 +1,7 @@
 // This event executes when a message is deleted
 const Discord = require('discord.js');
 
+// eslint-disable-next-line no-extend-native
 String.prototype.toProperCase = function() {
   return this.replace(/\w\S*/g, function(txt) {
     return txt
@@ -20,7 +21,7 @@ function parseGuildChange(message) {
 module.exports = async (client, guild) => {
   const logs = guild
     .channels
-    .find('name', 'logging');
+    .find((c) => c.name == 'logging');
 
   const entry = await guild
     .fetchAuditLogs({type: 'GUILD_UPDATE'})

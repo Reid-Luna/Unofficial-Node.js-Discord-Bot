@@ -5,7 +5,7 @@ module.exports = async (client, channel) => {
   const logs = channel
     .guild
     .channels
-    .find('name', 'logging');
+    .find((c) => c.name == 'logging');
 
   const entry = await channel
     .guild
