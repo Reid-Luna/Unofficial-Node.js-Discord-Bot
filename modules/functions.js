@@ -7,9 +7,6 @@ module.exports = (client) => {
     if (message.channel.type !== 'text') {
       return;
     }
-    const settings = client
-      .settings
-      .get(message.guild.id);
     const score = client
       .points
       .get(message.author.id) || {
@@ -77,9 +74,11 @@ module.exports = (client) => {
     const overrides = client
       .settings
       .get(guild.id) || {};
-    for (const key in def) {
-      returns[key] = overrides[key] || def[key];
+       for (const key in def) {
+    if ({}.hasOwnProperty.call(def, key)) {
+        returns[key] = overrides[key] || def[key];
     }
+}
     return returns;
   };
 
