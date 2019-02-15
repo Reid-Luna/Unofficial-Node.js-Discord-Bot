@@ -1,15 +1,15 @@
 /*
-  This command allows other users to give "rep" to the ones who helped them. this is meant to 
+  This command allows other users to give 'rep' to the ones who helped them. this is meant to
   replace the current ranking system which is based solely off the amount messages sent.
 */
 
 exports.run = (client, message, args, _level) => {
   const user = message.mentions.users.first() || client.users.get(args[0]);
 
-  if (!user) return message.reply("You have to specify a user!");
+  if (!user) return message.reply('You have to specify a user!');
 
   args.splice(0, 1);
-  let thanksMessage = args.join(" ");
+  let thanksMessage = args.join(' ');
   user.send(
     `${
       message.author.tag
@@ -18,17 +18,17 @@ exports.run = (client, message, args, _level) => {
 
   const key = `${message.guild.id}-${user.id}`;
 
-  let currentPoints = client.points.getProp(key, "points") + 20;
-  client.points.setProp(key, "points", currentPoints);
+  let currentPoints = client.points.getProp(key, 'points') + 20;
+  client.points.setProp(key, 'points', currentPoints);
 
   const curLevel = Math.floor(0.25 * Math.sqrt(currentPoints));
 
-  const userLevel = parseInt(client.points.getProp(key, "level"), 10);
+  const userLevel = parseInt(client.points.getProp(key, 'level'), 10);
 
-  client.emit("levelUpdate", message.member, message.guild, message);
+  client.emit('levelUpdate', message.member, message.guild, message);
 
   if (userLevel !== curLevel) {
-    client.points.setProp(key, "level", curLevel);
+    client.points.setProp(key, 'level', curLevel);
     message.reply(
       `You have leveled up to level **${curLevel}**! Congratulations!`
     );
@@ -38,13 +38,13 @@ exports.run = (client, message, args, _level) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["rep", "reputation", "thank"],
-  permLevel: "User"
+  aliases: ['rep', 'reputation', 'thank'],
+  permLevel: 'User',
 };
 
 exports.help = {
-  name: "rep",
-  category: "Level",
-  description: "Gives Rep to User",
-  usage: "rep <@user> [description]"
+  name: 'rep',
+  category: 'Level',
+  description: 'Gives Rep to User',
+  usage: 'rep <@user> [description]',
 };
